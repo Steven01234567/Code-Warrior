@@ -8,8 +8,8 @@
         Title="Scott's Awesome Game" Height="768" Width="1024">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" MinHeight="25.96"/>
+            <RowDefinition/>
             <RowDefinition Height="225"/>
         </Grid.RowDefinitions>
 
@@ -18,12 +18,11 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Menu" Background="AliceBlue"/>
-        <Label Grid.Row="0" Grid.Column="1" Content="Hello World" Background="Azure"/>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Menu" Background="AliceBlue" Margin="0,0,0,501" Grid.RowSpan="2"/>
         <Label Grid.Row="1" Grid.Column="0" Content="Player Data" Background="Aquamarine"/>
         <Label Grid.Row="1" Grid.Column="1" Content="Game Data" Background="Beige"/>
-        <Label Grid.Row="2" Grid.Column="0" Content="Inventory/Quests" Background="BurlyWood"/>
-        <Label Grid.Row="2" Grid.Column="1" Content="Combat/Movement Controls" Background="Lavender"/>
-        
+        <Label Grid.Row="1" Grid.Column="0" Content="Inventory/Quests" Background="BurlyWood" Margin="0,501,0,0" Grid.RowSpan="2"/>
+        <Label Grid.Row="1" Grid.Column="1" Content="Combat/Movement Controls" Background="Lavender" Margin="0,501,0,0" Grid.RowSpan="2"/>
+
     </Grid>
 </Window>
