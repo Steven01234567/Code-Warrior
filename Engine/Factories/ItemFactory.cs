@@ -9,12 +9,10 @@ namespace Engine.Factories
 {
     public static class ItemFactory
     {
-        private static List<GameItem> _standardGameItems;
+        private static readonly List<GameItem> _standardGameItems = new List<GameItem>();
 
         static ItemFactory()
         {
-            _standardGameItems = new List<GameItem>();
-
             _standardGameItems.Add(new Weapon(1001, "The C", 0, 5, 10));
             _standardGameItems.Add(new Weapon(1002, "The C++", 100, 5, 10));
             _standardGameItems.Add(new Weapon(1003, "The C#", 100, 10, 20));
@@ -22,8 +20,8 @@ namespace Engine.Factories
             _standardGameItems.Add(new GameItem(9002, "Branch", 5));
             _standardGameItems.Add(new GameItem(9003, "Leaf", 25));
             _standardGameItems.Add(new GameItem(9004, "Root", 50));
-            _standardGameItems.Add(new GameItem(8001, "Rust Metal", 30));
-            _standardGameItems.Add(new GameItem(8002, "Polished RustMetal", 60));
+            _standardGameItems.Add(new GameItem(8001, "Rustmetal", 30));
+            _standardGameItems.Add(new GameItem(8002, "Polished Rustmetal", 60));
         }
 
         public static GameItem CreateGameItem(int itemTypeID)
