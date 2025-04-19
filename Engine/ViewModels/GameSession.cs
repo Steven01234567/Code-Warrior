@@ -4,14 +4,18 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Engine.EventArgs;
 using Engine.Models;
 using Engine.Factories;
-using System.ComponentModel;
 
 namespace Engine.ViewModels
 {
     public class GameSession : BaseNotificationClass
     {
+        public event EventHandler<GameMessageEventArgs> OnMessageRaised;
+
+        #region Properties
+
         private Location _currentLocation;
         private Monster _currentMonster;
         public World CurrentWorld { get; set; }
@@ -40,6 +44,12 @@ namespace Engine.ViewModels
                 _currentMonster = value;
                 OnPropertyChanged(nameof(CurrentMonster));
                 OnPropertyChanged(nameof(HasMonster));
+
+                if (CurrentMonster != null)
+                {
+                    RaiseMessage("");
+                    RaiseMessage($"You see a {CurrentMonster.Name} here!");
+                }
             }
         }
         public bool HasLocationToNorth
@@ -60,6 +70,7 @@ namespace Engine.ViewModels
         }
         public bool HasMonster => CurrentMonster != null;
 
+        #endregion
         public GameSession()
         {
             CurrentPlayer = new Player 
@@ -117,6 +128,11 @@ namespace Engine.ViewModels
         private void GetMonsterAtLocation()
         {
             CurrentMonster = CurrentLocation.GetMonster();
+        }
+
+        private void RaiseMessage(string message)
+        {
+            OnMessageRaised?.Invoke(this, new GameMessageEventArgs(message));
         }
     }
 }
