@@ -32,6 +32,7 @@ namespace Engine.ViewModels
                 OnPropertyChanged(nameof(HasLocationToEast));
                 OnPropertyChanged(nameof(HasLocationToSouth));
 
+                CompleteQuestsAtLocation();
                 GivePlayerQuestsAtLocation();
                 GetMonsterAtLocation();
             }
@@ -47,8 +48,7 @@ namespace Engine.ViewModels
 
                 if (CurrentMonster != null)
                 {
-                    RaiseMessage("");
-                    RaiseMessage($"You see a {CurrentMonster.Name} here!");
+                    RaiseMessage($"\nYou see a {CurrentMonster.Name} here!");
                 }
             }
         }
@@ -111,6 +111,44 @@ namespace Engine.ViewModels
             CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate - 1);
         }
 
+        private void CompleteQuestsAtLocation()
+        {
+            foreach(Quest quest in CurrentLocation.QuestsAvailableHere)
+            {
+                QuestStatus questToComplete =
+                    CurrentPlayer.Quests.FirstOrDefault(q => q.PlayerQuest.ID == quest.ID && !q.IsCompleted);
+                
+                if (questToComplete != null)
+                {
+                    if (CurrentPlayer.HasAllTheseItems(quest.ItemsToComplete))
+                    {
+                        foreach(ItemQuantity itemQuantity in quest.ItemsToComplete)
+                        {
+                            CurrentPlayer.RemoveItemFromInventory(ItemFactory.CreateGameItem(itemQuantity.ItemID, itemQuantity.Quantity));
+                        }
+
+                        RaiseMessage($"\nYou completed the '{quest.Name}' quest");
+
+                        CurrentPlayer.ExperiencePoints += quest.RewardExperiencePoints;
+                        RaiseMessage($"You gained {quest.RewardExperiencePoints} experience points");
+
+                        CurrentPlayer.Gold += quest.RewardGold;
+                        RaiseMessage($"You earned {quest.RewardGold} gold");
+
+                        foreach(ItemQuantity itemQuantity in quest.RewardItems)
+                        {
+                            GameItem RewardItem = (ItemFactory.CreateGameItem(itemQuantity.ItemID, itemQuantity.Quantity));
+
+                            CurrentPlayer.AddItemToInventory(RewardItem);
+                            RaiseMessage($"You received {RewardItem.Quantity} {RewardItem.Name}");
+                        }
+
+                        questToComplete.IsCompleted = true;
+                    }
+                }
+            }
+        }
+
         private void GivePlayerQuestsAtLocation()
         {
             foreach(Quest quest in CurrentLocation.QuestsAvailableHere)
@@ -118,6 +156,23 @@ namespace Engine.ViewModels
                 if (!CurrentPlayer.Quests.Any(q => q.PlayerQuest.ID == quest.ID))
                 {
                     CurrentPlayer.Quests.Add(new QuestStatus(quest));
+
+                    RaiseMessage($"\n'{quest.Name}' quest started!");
+                    RaiseMessage(quest.Description);
+
+                    RaiseMessage("Return with:");
+                    foreach(ItemQuantity itemQuantity in quest.ItemsToComplete)
+                    {
+                        RaiseMessage($"   {itemQuantity.Quantity} {ItemFactory.CreateGameItem(itemQuantity.ItemID).Name}");
+                    }
+
+                    RaiseMessage("And you will receive:");
+                    RaiseMessage($"   {quest.RewardExperiencePoints} experience points");
+                    RaiseMessage($"   {quest.RewardGold} gold");
+                    foreach(ItemQuantity itemQuantity in quest.RewardItems)
+                    {
+                        RaiseMessage($"   {itemQuantity.Quantity} {ItemFactory.CreateGameItem(itemQuantity.ItemID).Name}");
+                    }
                 }
             }
         }
@@ -149,8 +204,7 @@ namespace Engine.ViewModels
 
             if (CurrentMonster.HitPoints <= 0)
             {
-                RaiseMessage("");
-                RaiseMessage($"You defeated the {CurrentMonster.Name}!");
+                RaiseMessage($"\nYou defeated the {CurrentMonster.Name}!");
 
                 CurrentPlayer.ExperiencePoints += CurrentMonster.RewardExperiencePoints;
                 RaiseMessage($"You gained {CurrentMonster.RewardExperiencePoints} experience points.");
@@ -183,8 +237,7 @@ namespace Engine.ViewModels
 
                 if (CurrentPlayer.HitPoints <= 0)
                 {
-                    RaiseMessage("");
-                    RaiseMessage($"The {CurrentMonster.Name} killed you.");
+                    RaiseMessage($"\nThe {CurrentMonster.Name} killed you.");
 
                     CurrentLocation = CurrentWorld.LocationAt(0, 0);
                     CurrentPlayer.HitPoints = CurrentPlayer.Level * 10;

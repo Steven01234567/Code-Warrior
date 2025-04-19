@@ -85,7 +85,7 @@ namespace Engine.Models
         {
             foreach(GameItem inventoryItem in Inventory)
             {
-                if (item.Name == inventoryItem.Name)
+                if (item.ItemTypeID == inventoryItem.ItemTypeID)
                 {
                     inventoryItem.Quantity += item.Quantity;
                     OnPropertyChanged(nameof(Weapons));
@@ -96,6 +96,38 @@ namespace Engine.Models
             Inventory.Add(item);
 
             OnPropertyChanged(nameof(Weapons));
+        }
+        public void RemoveItemFromInventory(GameItem item)
+        {
+            foreach (GameItem inventoryItem in Inventory)
+            {
+                if (item.ItemTypeID == inventoryItem.ItemTypeID)
+                {
+                    if (item.Quantity >= inventoryItem.Quantity)
+                    {
+                        Inventory.Remove(inventoryItem);
+                    }
+                    else if (item.Quantity < inventoryItem.Quantity)
+                    {
+                        inventoryItem.Quantity -= item.Quantity;
+                    }
+                        OnPropertyChanged(nameof(Weapons));
+                    break;
+                }
+            }
+        }
+
+        public bool HasAllTheseItems(List<ItemQuantity> items)
+        {
+            foreach(ItemQuantity itemQuantity in items)
+            {
+                if (!Inventory.Any(i => i.ItemTypeID == itemQuantity.ItemID && i.Quantity >= itemQuantity.Quantity))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

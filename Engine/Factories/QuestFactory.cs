@@ -14,16 +14,19 @@ namespace Engine.Factories
         
         static QuestFactory()
         {
-            List<ItemQuantity> itemsToComplete = new List<ItemQuantity>();
-            List<ItemQuantity> rewardItems = new List<ItemQuantity>();
+            List<ItemQuantity> quest1_ItemsToComplete = new List<ItemQuantity>();
+            List<ItemQuantity> quest2_ItemsToComplete = new List<ItemQuantity>();
 
-            itemsToComplete.Add(new ItemQuantity(9001, 10));
-            rewardItems.Add(new ItemQuantity(8001, 1));
-            _quests.Add(new Quest(1, "Get Those Mips!", "Help Armstrong clear his field of Mips and bring back proof", itemsToComplete, 25, 10, rewardItems));
+            List<ItemQuantity> quest1_RewardItems = new List<ItemQuantity>();
+            List<ItemQuantity> quest2_RewardItems = new List<ItemQuantity>();
 
-            itemsToComplete.Add(new ItemQuantity(9002, 10));
-            rewardItems.Add(new ItemQuantity(8002, 1));
-            _quests.Add(new Quest(2, "We Need More Forks!", "Bring Gitian some branches to make forks", itemsToComplete, 25, 10, rewardItems));
+            quest1_ItemsToComplete.Add(new ItemQuantity(9001, 10));
+            quest1_RewardItems.Add(new ItemQuantity(8001, 1));
+            _quests.Add(new Quest(1, "Get Those Mips!", "Help Armstrong clear his field of Mips and bring back proof", quest1_ItemsToComplete, 25, 10, quest1_RewardItems));
+
+            quest2_ItemsToComplete.Add(new ItemQuantity(9002, 10));
+            quest2_RewardItems.Add(new ItemQuantity(8002, 1));
+            _quests.Add(new Quest(2, "We Need More Forks!", "Bring Gitian some branches to make forks", quest2_ItemsToComplete, 25, 10, quest2_RewardItems));
         }
 
         internal static Quest GetQuestByID(int id)
