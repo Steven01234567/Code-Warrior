@@ -7,11 +7,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Locations\Armstrong.png" />
+    <None Remove="Images\Locations\Cecil.png" />
+    <None Remove="Images\Locations\EastPath.png" />
+    <None Remove="Images\Locations\Entrance.png" />
+    <None Remove="Images\Locations\Field.png" />
+    <None Remove="Images\Locations\GItian.png" />
     <None Remove="Images\Locations\PlayerHouse.png" />
+    <None Remove="Images\Locations\Risky.png" />
+    <None Remove="Images\Locations\Segmentius.png" />
+    <None Remove="Images\Locations\Tree.png" />
+    <None Remove="Images\Locations\WestPath.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\Locations\Armstrong.png" />
+    <Resource Include="Images\Locations\Cecil.png" />
+    <Resource Include="Images\Locations\EastPath.png" />
+    <Resource Include="Images\Locations\Entrance.png" />
+    <Resource Include="Images\Locations\Field.png" />
+    <Resource Include="Images\Locations\GItian.png" />
     <Resource Include="Images\Locations\PlayerHouse.png" />
+    <Resource Include="Images\Locations\Risky.png" />
+    <Resource Include="Images\Locations\Segmentius.png" />
+    <Resource Include="Images\Locations\Tree.png" />
+    <Resource Include="Images\Locations\WestPath.png" />
   </ItemGroup>
 
 </Project>
