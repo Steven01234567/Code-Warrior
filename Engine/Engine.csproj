@@ -34,4 +34,8 @@
     <Resource Include="Images\Locations\WestPath.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\Monsters\" />
+  </ItemGroup>
+
 </Project>
