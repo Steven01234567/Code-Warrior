@@ -17,16 +17,20 @@ namespace Engine.Factories
             newWorld.AddLocation(0, 0, "Home", "This is your home", 
                 "PlayerHouse.png");
 
-            // NPCs
+            // Traders
             newWorld.AddLocation(-1, -1, "Risky, the 5th, Ashembly, the Alchemist", "Risky: \"Try my potions...for a fair price hohoho...\"", 
                 "Risky.png");
+            newWorld.LocationAt(-1, -1).TraderHere = TraderFactory.GetTraderByName("Risky");
 
             newWorld.AddLocation(0, -1, "Segmentius Faultius, the Merchant", "Segmentius: \"Self-proclaimed most honest merchant, no one else offers better deals than me!\"", 
                 "Segmentius.png");
+            newWorld.LocationAt(0, -1).TraderHere = TraderFactory.GetTraderByName("Segmentius");
 
             newWorld.AddLocation(1, -1, "Cecil Caeser Gaston, the Blacksmith", "Cecil: \"I'm your local blacksmith, the best in town!\"", 
                 "Cecil.png");
+            newWorld.LocationAt(1, -1).TraderHere = TraderFactory.GetTraderByName("Cecil");
 
+            // Quests
             newWorld.AddLocation(-1, 0, "Armstrong Ashembly, the Farmer", "Armstrong: \"Help me clear those Mips! They're ravaging my farm!\"",
                 "Armstrong.png");
             newWorld.LocationAt(-1, 0).QuestsAvailableHere.Add(QuestFactory.GetQuestByID(1));
