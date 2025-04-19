@@ -20,10 +20,10 @@ namespace Engine.Factories
             _standardGameItems.Add(new Weapon(1003, "The C#", 100, 10, 20));
             _standardGameItems.Add(new GameItem(9001, "Jar of Mips", 15));
             _standardGameItems.Add(new GameItem(9002, "Branch", 5));
-            _standardGameItems.Add(new GameItem(9003, "Leaf", 10));
-            _standardGameItems.Add(new GameItem(9004, "Root", 20));
-            _standardGameItems.Add(new GameItem(8001, "Rust", 30));
-            _standardGameItems.Add(new GameItem(8002, "Polished Rust", 60));
+            _standardGameItems.Add(new GameItem(9003, "Leaf", 25));
+            _standardGameItems.Add(new GameItem(9004, "Root", 50));
+            _standardGameItems.Add(new GameItem(8001, "Rust Metal", 30));
+            _standardGameItems.Add(new GameItem(8002, "Polished RustMetal", 60));
         }
 
         public static GameItem createGameItem(int itemTypeID)
