@@ -26,12 +26,17 @@ namespace Engine.Factories
             _standardGameItems.Add(new GameItem(8002, "Polished RustMetal", 60));
         }
 
-        public static GameItem createGameItem(int itemTypeID)
+        public static GameItem CreateGameItem(int itemTypeID)
         {
             GameItem standardItem = _standardGameItems.FirstOrDefault(item => item.ItemTypeID == itemTypeID);
 
             if (standardItem != null)
             {
+                if (standardItem is Weapon)
+                {
+                    return (standardItem as Weapon).Clone();
+                }
+
                 return standardItem.Clone();
             }
 
