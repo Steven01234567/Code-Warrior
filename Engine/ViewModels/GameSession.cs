@@ -160,7 +160,7 @@ namespace Engine.ViewModels
 
                 foreach(ItemQuantity itemQuantity in CurrentMonster.Inventory)
                 {
-                    GameItem item = ItemFactory.CreateGameItem(itemQuantity.ItemID);
+                    GameItem item = ItemFactory.CreateGameItem(itemQuantity.ItemID, itemQuantity.Quantity);
                     CurrentPlayer.AddItemToInventory(item);
                     RaiseMessage($"You received {itemQuantity.Quantity} {item.Name}.");
                 }

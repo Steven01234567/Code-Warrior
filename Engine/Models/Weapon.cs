@@ -11,8 +11,8 @@ namespace Engine.Models
         public int MinimumDamage { get; set; }
         public int MaximumDamage { get; set; }
 
-        public Weapon(int itemTypeID, string name, int price, int minDamage, int maxDamage) 
-            : base(itemTypeID, name, price)
+        public Weapon(int itemTypeID, string name, int price, int minDamage, int maxDamage, int quantity = 1) 
+            : base(itemTypeID, name, price, quantity)
         {
             MinimumDamage = minDamage;
             MaximumDamage = maxDamage;
@@ -20,7 +20,7 @@ namespace Engine.Models
 
         public new Weapon Clone()
         {
-            return new Weapon(ItemTypeID, Name, Price, MinimumDamage, MaximumDamage);
+            return new Weapon(ItemTypeID, Name, Price, MinimumDamage, MaximumDamage, Quantity);
         }
     }
 }

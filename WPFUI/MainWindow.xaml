@@ -159,11 +159,10 @@
                             <DataGridTextColumn Header="Description"
                                                 Binding="{Binding Name}"
                                                 Width="*"/>
-                            <DataGridTextColumn Header="Price"
-                                                Binding="{Binding Price}"
+                            <DataGridTextColumn Header="Quantity"
+                                                Binding="{Binding Quantity}"
                                                 Width="Auto"/>
                         </DataGrid.Columns>
-                        
                     </DataGrid>
                 </TabItem>
 

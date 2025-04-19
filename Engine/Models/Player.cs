@@ -83,6 +83,16 @@ namespace Engine.Models
 
         public void AddItemToInventory(GameItem item)
         {
+            foreach(GameItem inventoryItem in Inventory)
+            {
+                if (item.Name == inventoryItem.Name)
+                {
+                    inventoryItem.Quantity += item.Quantity;
+                    OnPropertyChanged(nameof(Weapons));
+                    return;
+                }
+            }
+
             Inventory.Add(item);
 
             OnPropertyChanged(nameof(Weapons));
