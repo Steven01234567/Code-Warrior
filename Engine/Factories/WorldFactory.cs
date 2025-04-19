@@ -38,21 +38,26 @@ namespace Engine.Factories
             // Monster-related Locations
             newWorld.AddLocation(-2, 0, "West Path", "You encounter a Mip on your way to the field",
                 "/Engine;component/Images/Locations/WestPath.png");
+            newWorld.LocationAt(-2, 0).AddMonster(101, 100);
 
             newWorld.AddLocation(-2, 1, "Infested Field", "You encounter a horde of Mips",
                 "/Engine;component/Images/Locations/Field.png");
+            newWorld.LocationAt(-2, 1).AddMonster(101, 100);
 
             newWorld.AddLocation(2, 0, "East Path", "You encounter a bunch of Nodes",
                 "/Engine;component/Images/Locations/EastPath.png");
+            newWorld.LocationAt(2, 0).AddMonster(201, 100);
 
             newWorld.AddLocation(2, 1, "The Binary Tree", "You encounter the Binary Tree",
                 "/Engine;component/Images/Locations/Tree.png");
+            newWorld.LocationAt(2, 1).AddMonster(202, 100);
 
             newWorld.AddLocation(0, 1, "Entrance to the Python Lair", "It's too dark and dangerous to enter unequiped. Obtain a Pytorch before proceeding.",
                 "/Engine;component/Images/Locations/Entrance.png");
 
             newWorld.AddLocation(0, 2, "The Python Lair", "The Python, twin-headed ruler of the Python Lair",
                 "/Engine;component/Images/Locations/__NOT_MADE_YET__");
+            newWorld.LocationAt(0, 2).AddMonster(301, 100);
 
             return newWorld;
         }
