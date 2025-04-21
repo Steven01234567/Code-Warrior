@@ -232,7 +232,7 @@ namespace Engine.ViewModels
                 {
                     damageToMonster *= 2;
                     CurrentMonster.IsBleeding = false;
-                    RaiseMessage("You attacked when your enemy was vunerable!");
+                    RaiseMessage("You attacked when your enemy was vulnerable!");
                 }
                 if (CurrentWeapon.Effect == "Pierce")
                 {
