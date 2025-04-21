@@ -30,7 +30,7 @@ namespace Engine.Factories
                     return mips;
 
                 case 201:
-                    Monster nodes = new Monster("Nodes", "Nodes.png", 8, 8, 4, 4, 4, 16, 8);
+                    Monster nodes = new Monster("Nodes", "Nodes.png", 32, 32, 4, 4, 4, 16, 8);
 
                     AddLootItem(nodes, 9002, 75, 1);
                     AddLootItem(nodes, 9003, 25, 1);
