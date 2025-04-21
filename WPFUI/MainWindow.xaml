@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         FontSize="11pt"
-        Title="Scott's Awesome Game" Height="768" Width="1024">
+        Title="Code Warrior" Height="768" Width="1024">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
@@ -157,8 +157,11 @@
                               AutoGenerateColumns="False"
                               HeadersVisibility="Column">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Description"
+                            <DataGridTextColumn Header="Item"
                                                 Binding="{Binding Name}"
+                                                Width="*"/>
+                            <DataGridTextColumn Header="Effect"
+                                                Binding="{Binding Effect}"
                                                 Width="*"/>
                             <DataGridTextColumn Header="Quantity"
                                                 Binding="{Binding Quantity}"

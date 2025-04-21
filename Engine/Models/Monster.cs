@@ -32,11 +32,13 @@ namespace Engine.Models
         public int RewardGold {  get; private set; }
 
         public ObservableCollection<ItemQuantity> Inventory { get; set; }
+        public bool IsBleeding { get; set; }
 
         public Monster(string name, string imageName,
             int maxHitPoints, int hitPoints,
             int minimumDamage, int maximumDamage, int amount,
-            int rewardExperiencePoints, int rewardGold)
+            int rewardExperiencePoints, int rewardGold,
+            bool isBleeding = false)
         {
             Name = name;
             ImageName = $"/Engine;component/Images/Monsters/{imageName}";
@@ -49,6 +51,7 @@ namespace Engine.Models
             RewardGold = rewardGold;
 
             Inventory = new ObservableCollection<ItemQuantity>();
+            IsBleeding = isBleeding;
         }
     }
 }

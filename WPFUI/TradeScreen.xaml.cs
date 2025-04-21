@@ -76,6 +76,7 @@ namespace WPFUI
                     if (item.ItemTypeID == 2001)
                     {
                         Session.CurrentPlayer.HitPoints = Session.CurrentPlayer.MaximumHitPoints;
+                        MessageBox.Show("You restored to full health!");
                     }
                 }
                 else

@@ -12,6 +12,7 @@ namespace Engine.Models
 
         public int ItemTypeID { get; set; }
         public string Name { get; set; }
+        public string Effect { get; set; }
         public int Price { get; set; }
         public int Quantity 
         { 
@@ -23,17 +24,18 @@ namespace Engine.Models
             }
         }
 
-        public GameItem(int itemTypeID, string name, int price, int quantity = 1)
+        public GameItem(int itemTypeID, string name, int price,string effect = "",  int quantity = 1)
         {
             ItemTypeID = itemTypeID;
             Name = name;
+            Effect = effect;
             Price = price;
             Quantity = quantity;
         }
 
         public GameItem Clone()
         {
-            return new GameItem(ItemTypeID, Name, Price, Quantity);
+            return new GameItem(ItemTypeID, Name, Price, Effect, Quantity);
         }
     }
 }

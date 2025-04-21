@@ -30,7 +30,7 @@ namespace Engine.Factories
                     return mips;
 
                 case 201:
-                    Monster nodes = new Monster("Nodes", "Node.png", 8, 8, 4, 4, 4, 16, 8);
+                    Monster nodes = new Monster("Nodes", "Nodes.png", 8, 8, 4, 4, 4, 16, 8);
 
                     AddLootItem(nodes, 9002, 75, 1);
                     AddLootItem(nodes, 9003, 25, 1);
@@ -38,21 +38,21 @@ namespace Engine.Factories
                     return nodes;
 
                 case 202:
-                    Monster tree = new Monster("Tree", "Tree.png", 128, 128, 32, 32, 1, 64, 64);
+                    Monster binaryTree = new Monster("Binary Tree", "BinaryTree.png", 128, 128, 32, 32, 1, 64, 64);
 
-                    AddLootItem(tree, 9002, 100, 63);
-                    AddLootItem(tree, 9003, 50, 32);
-                    AddLootItem(tree, 9004, 25, 1);
+                    AddLootItem(binaryTree, 9002, 100, 63);
+                    AddLootItem(binaryTree, 9003, 50, 32);
+                    AddLootItem(binaryTree, 9004, 25, 1);
 
-                    return tree;
+                    return binaryTree;
 
                 case 301:
-                    Monster python = new Monster("Python", "Python.png", 200, 200, 40, 40, 2, 200, 200);
+                    Monster python = new Monster("Python", "Python.png", 200, 200, 20, 20, 2, 200, 200);
 
                     return python;
 
                 case 302:
-                    Monster pythonDark = new Monster("Python in Darkness", "Python.png", 200, 200, 400, 400, 2, 200, 200);
+                    Monster pythonDark = new Monster("Python in Darkness", "PythonDark.png", 200, 200, 99, 99, 2, 200, 200);
 
                     return pythonDark;
 

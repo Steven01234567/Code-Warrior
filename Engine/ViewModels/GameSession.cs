@@ -81,20 +81,18 @@ namespace Engine.ViewModels
         #endregion
         public GameSession()
         {
-            CurrentPlayer = new Player(100000)
+            CurrentPlayer = new Player(200)
             { 
                 Name = "Oscar Owen Peterson", 
-                CharacterClass = "Swordsman", 
-                HitPoints = 1000000, 
+                CharacterClass = "Code Warrior",  
                 ExperiencePoints = 0, 
-                Gold = 1000000, 
+                Gold = 20, 
                 Level = 1 
             };
 
             if (!CurrentPlayer.Weapons.Any())
             {
                 CurrentPlayer.AddItemToInventory(ItemFactory.CreateGameItem(1001));
-                CurrentPlayer.AddItemToInventory(ItemFactory.CreateGameItem(1011));
             }
 
             CurrentWorld = WorldFactory.CreateWorld();
@@ -204,6 +202,7 @@ namespace Engine.ViewModels
             }
         }
 
+        // Combat Logic
         public void AttackCurrentMonster()
         {
             if (CurrentWeapon == null)
@@ -220,10 +219,27 @@ namespace Engine.ViewModels
             }
             else
             {
-                if (CurrentWeapon.ItemTypeID == 1002)
+                if (CurrentWeapon.Effect == "Cleave")
                 {
                     damageToMonster *= CurrentMonster.Amount;
+                    if (CurrentMonster.Amount > 1)
+                    {
+                        RaiseMessage("Your attack hit all enemies!");
+                    }
                 }
+
+                if (CurrentMonster.IsBleeding)
+                {
+                    damageToMonster *= 2;
+                    CurrentMonster.IsBleeding = false;
+                    RaiseMessage("You attacked when your enemy was vunerable!");
+                }
+                if (CurrentWeapon.Effect == "Pierce")
+                {
+                    CurrentMonster.IsBleeding = true;
+                    RaiseMessage("Your attack exposed the enemy!");
+                }
+
                 CurrentMonster.HitPoints -= damageToMonster;
                 RaiseMessage($"You did {damageToMonster} damage to the {CurrentMonster.Name}");
             }
@@ -267,7 +283,7 @@ namespace Engine.ViewModels
                     RaiseMessage($"\nThe {CurrentMonster.Name} killed you.");
 
                     CurrentLocation = CurrentWorld.LocationAt(0, 0);
-                    CurrentPlayer.HitPoints = CurrentPlayer.Level * 10;
+                    CurrentPlayer.HitPoints = CurrentPlayer.MaximumHitPoints;
                 }
             }
         }

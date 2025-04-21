@@ -18,6 +18,12 @@
     <None Remove="Images\Locations\Segmentius.png" />
     <None Remove="Images\Locations\Tree.png" />
     <None Remove="Images\Locations\WestPath.png" />
+    <None Remove="Images\Monsters\BinaryTree.png" />
+    <None Remove="Images\Monsters\Mip.png" />
+    <None Remove="Images\Monsters\Mips.png" />
+    <None Remove="Images\Monsters\Nodes.png" />
+    <None Remove="Images\Monsters\Python.png" />
+    <None Remove="Images\Monsters\PythonDark.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,10 +38,12 @@
     <Resource Include="Images\Locations\Segmentius.png" />
     <Resource Include="Images\Locations\Tree.png" />
     <Resource Include="Images\Locations\WestPath.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Images\Monsters\" />
+    <Resource Include="Images\Monsters\BinaryTree.png" />
+    <Resource Include="Images\Monsters\Mip.png" />
+    <Resource Include="Images\Monsters\Mips.png" />
+    <Resource Include="Images\Monsters\Nodes.png" />
+    <Resource Include="Images\Monsters\Python.png" />
+    <Resource Include="Images\Monsters\PythonDark.png" />
   </ItemGroup>
 
 </Project>
