@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,10 +35,19 @@ namespace WPFUI
 
             if (item != null)
             {
-                //item.Quantity = 1;
+                GameItem tempItem;
+                if (item is Weapon)
+                {
+                    tempItem = (item as Weapon).Clone();
+                }
+                else
+                {
+                    tempItem = item.Clone();
+                }
+                tempItem.Quantity = 1;
                 Session.CurrentPlayer.Gold += item.Price;
-                Session.CurrentTrader.AddItemToInventory(item);
-                Session.CurrentPlayer.RemoveItemFromInventory(item);
+                Session.CurrentTrader.AddItemToInventory(tempItem);
+                Session.CurrentPlayer.RemoveItemFromInventory(tempItem);
             }
         }
 
@@ -47,12 +57,21 @@ namespace WPFUI
 
             if (item != null)
             {
-                //item.Quantity = 1;
+                GameItem tempItem;
+                if (item is Weapon)
+                {
+                    tempItem = (item as Weapon).Clone();
+                }
+                else
+                {
+                    tempItem = item.Clone();
+                }
+                tempItem.Quantity = 1;
                 if (Session.CurrentPlayer.Gold >= item.Price)
                 {
                     Session.CurrentPlayer.Gold -= item.Price;
-                    Session.CurrentTrader.RemoveItemFromInventory(item);
-                    Session.CurrentPlayer.AddItemToInventory(item);
+                    Session.CurrentTrader.RemoveItemFromInventory(tempItem);
+                    Session.CurrentPlayer.AddItemToInventory(tempItem);
                 }
                 else
                 {
