@@ -26,6 +26,7 @@ namespace Engine.Models
         }
         public int MinimumDamage { get; set; }
         public int MaximumDamage { get; set; }
+        public int Amount { get; set; }
 
         public int RewardExperiencePoints { get; private set; }
         public int RewardGold {  get; private set; }
@@ -34,7 +35,7 @@ namespace Engine.Models
 
         public Monster(string name, string imageName,
             int maxHitPoints, int hitPoints,
-            int minimumDamage, int maximumDamage,
+            int minimumDamage, int maximumDamage, int amount,
             int rewardExperiencePoints, int rewardGold)
         {
             Name = name;
@@ -43,6 +44,7 @@ namespace Engine.Models
             HitPoints = hitPoints;
             MinimumDamage = minimumDamage;
             MaximumDamage = maximumDamage;
+            Amount = amount;
             RewardExperiencePoints = rewardExperiencePoints;
             RewardGold = rewardGold;
 

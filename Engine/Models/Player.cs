@@ -74,6 +74,7 @@ namespace Engine.Models
         public ObservableCollection<GameItem> Inventory { get; set; }
         public List<GameItem> Weapons => Inventory.Where(i => i is Weapon).ToList();
         public ObservableCollection<QuestStatus> Quests { get; set; }
+        public bool HasPytorch => Inventory.Any(i => i.ItemTypeID == 200);
 
         public Player()
         {
@@ -89,12 +90,14 @@ namespace Engine.Models
                 {
                     inventoryItem.Quantity += item.Quantity;
                     OnPropertyChanged(nameof(Weapons));
+                    OnPropertyChanged(nameof(HasPytorch));
                     return;
                 }
             }
 
             Inventory.Add(item);
             OnPropertyChanged(nameof(Weapons));
+            OnPropertyChanged(nameof(HasPytorch));
         }
         public void RemoveItemFromInventory(GameItem item)
         {
@@ -110,7 +113,8 @@ namespace Engine.Models
                     {
                         inventoryItem.Quantity -= item.Quantity;
                     }
-                        OnPropertyChanged(nameof(Weapons));
+                    OnPropertyChanged(nameof(Weapons));
+                    OnPropertyChanged(nameof(HasPytorch));
                     break;
                 }
             }

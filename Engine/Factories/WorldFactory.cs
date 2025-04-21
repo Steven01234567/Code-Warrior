@@ -46,7 +46,7 @@ namespace Engine.Factories
 
             newWorld.AddLocation(-2, 1, "Infested Field", "You encounter a horde of Mips",
                 "Field.png");
-            newWorld.LocationAt(-2, 1).AddMonster(101, 100);
+            newWorld.LocationAt(-2, 1).AddMonster(102, 100);
 
             newWorld.AddLocation(2, 0, "East Path", "You encounter a bunch of Nodes",
                 "EastPath.png");

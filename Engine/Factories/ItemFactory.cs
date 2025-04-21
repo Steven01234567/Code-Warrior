@@ -13,10 +13,11 @@ namespace Engine.Factories
 
         static ItemFactory()
         {
-            _standardGameItems.Add(new Weapon(1001, "The C", 0, 5, 10));
-            _standardGameItems.Add(new Weapon(1002, "The C++", 100, 5, 10));
-            _standardGameItems.Add(new Weapon(1003, "The C#", 100, 10, 20));
-            _standardGameItems.Add(new GameItem(2001, "Blue Potion", 10));
+            _standardGameItems.Add(new Weapon(1001, "The C", 0, 0, 16));
+            _standardGameItems.Add(new Weapon(1002, "The C++", 50, 8, 16));
+            _standardGameItems.Add(new Weapon(1003, "The C#", 200, 32, 128));
+            _standardGameItems.Add(new Weapon(1011, "Java-lin", 100, 0, 100));
+            _standardGameItems.Add(new GameItem(2001, "Health Potion", 10));
             _standardGameItems.Add(new GameItem(2002, "Pytorch", 200));
             _standardGameItems.Add(new GameItem(8001, "Rustmetal", 100));
             _standardGameItems.Add(new GameItem(8002, "Polished Rustmetal", 200));

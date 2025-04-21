@@ -85,7 +85,7 @@ namespace Engine.ViewModels
             { 
                 Name = "Oscar Owen Peterson", 
                 CharacterClass = "Swordsman", 
-                HitPoints = 10, 
+                HitPoints = 1000000, 
                 ExperiencePoints = 0, 
                 Gold = 1000000, 
                 Level = 1 
@@ -94,6 +94,7 @@ namespace Engine.ViewModels
             if (!CurrentPlayer.Weapons.Any())
             {
                 CurrentPlayer.AddItemToInventory(ItemFactory.CreateGameItem(1001));
+                CurrentPlayer.AddItemToInventory(ItemFactory.CreateGameItem(1011));
             }
 
             CurrentWorld = WorldFactory.CreateWorld();
@@ -212,6 +213,10 @@ namespace Engine.ViewModels
             }
             else
             {
+                if (CurrentWeapon.ItemTypeID == 1002)
+                {
+                    damageToMonster *= CurrentMonster.Amount;
+                }
                 CurrentMonster.HitPoints -= damageToMonster;
                 RaiseMessage($"You did {damageToMonster} damage to the {CurrentMonster.Name}");
             }
@@ -245,6 +250,7 @@ namespace Engine.ViewModels
                 }
                 else
                 {
+                    damageToPlayer *= (int)Math.Ceiling((decimal)CurrentMonster.Amount * (decimal)CurrentMonster.HitPoints / (decimal)CurrentMonster.MaximumHitPoints);
                     CurrentPlayer.HitPoints -= damageToPlayer;
                     RaiseMessage($"The {CurrentMonster.Name} hit you for {damageToPlayer} points.");
                 }
