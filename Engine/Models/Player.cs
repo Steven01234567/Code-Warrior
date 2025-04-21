@@ -35,6 +35,7 @@ namespace Engine.Models
                 OnPropertyChanged(nameof(CharacterClass));
             }
         }
+        public int MaximumHitPoints { get; private set; }
         public int HitPoints
         {
             get { return _hitPoints; }
@@ -74,12 +75,13 @@ namespace Engine.Models
         public ObservableCollection<GameItem> Inventory { get; set; }
         public List<GameItem> Weapons => Inventory.Where(i => i is Weapon).ToList();
         public ObservableCollection<QuestStatus> Quests { get; set; }
-        public bool HasPytorch => Inventory.Any(i => i.ItemTypeID == 200);
+        public bool HasPytorch { get; private set; }
 
-        public Player()
+        public Player(int maximumHitPoints)
         {
             Inventory = new ObservableCollection<GameItem>();
             Quests = new ObservableCollection<QuestStatus>();
+            MaximumHitPoints = HitPoints = maximumHitPoints;
         }
 
         public void AddItemToInventory(GameItem item)
@@ -97,7 +99,10 @@ namespace Engine.Models
 
             Inventory.Add(item);
             OnPropertyChanged(nameof(Weapons));
-            OnPropertyChanged(nameof(HasPytorch));
+            if (item.ItemTypeID == 2002)
+            {
+                HasPytorch = true;
+            }
         }
         public void RemoveItemFromInventory(GameItem item)
         {
@@ -108,6 +113,10 @@ namespace Engine.Models
                     if (item.Quantity >= inventoryItem.Quantity)
                     {
                         Inventory.Remove(inventoryItem);
+                        if (item.ItemTypeID == 2002)
+                        {
+                            HasPytorch = false;
+                        }
                     }
                     else if (item.Quantity < inventoryItem.Quantity)
                     {

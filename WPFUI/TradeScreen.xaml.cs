@@ -72,6 +72,11 @@ namespace WPFUI
                     Session.CurrentPlayer.Gold -= item.Price;
                     Session.CurrentTrader.RemoveItemFromInventory(tempItem);
                     Session.CurrentPlayer.AddItemToInventory(tempItem);
+
+                    if (item.ItemTypeID == 2001)
+                    {
+                        Session.CurrentPlayer.HitPoints = Session.CurrentPlayer.MaximumHitPoints;
+                    }
                 }
                 else
                 {

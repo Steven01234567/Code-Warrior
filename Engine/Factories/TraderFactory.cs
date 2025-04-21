@@ -18,7 +18,7 @@ namespace Engine.Factories
             cecil.AddItemToInventory(ItemFactory.CreateGameItem(1003, 1));
 
             Trader risky = new Trader("Risky");
-            risky.AddItemToInventory(ItemFactory.CreateGameItem(2001, 1));
+            risky.AddItemToInventory(ItemFactory.CreateGameItem(2001, 1000));
             risky.AddItemToInventory(ItemFactory.CreateGameItem(2002, 1));
 
             Trader segmentius = new Trader("Segmentius");

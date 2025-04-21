@@ -81,7 +81,7 @@ namespace Engine.ViewModels
         #endregion
         public GameSession()
         {
-            CurrentPlayer = new Player 
+            CurrentPlayer = new Player(100000)
             { 
                 Name = "Oscar Owen Peterson", 
                 CharacterClass = "Swordsman", 
@@ -195,6 +195,13 @@ namespace Engine.ViewModels
         private void GetMonsterAtLocation()
         {
             CurrentMonster = CurrentLocation.GetMonster();
+            if (CurrentMonster != null)
+            {
+                if (CurrentMonster.Name == "Python" && !CurrentPlayer.HasPytorch)
+                {
+                    CurrentMonster = MonsterFactory.GetMonster(302);
+                }
+            }
         }
 
         public void AttackCurrentMonster()
