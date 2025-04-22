@@ -254,6 +254,11 @@ namespace Engine.ViewModels
         // Combat Logic
         public void AttackCurrentMonster()
         {
+            if (CurrentMonster == null)
+            {
+                RaiseMessage("There is nothing to attack");
+            }
+
             if (CurrentWeapon == null)
             {
                 RaiseMessage("You must select a weapon, to attack.");
