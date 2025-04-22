@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Code Warrior UI", "WPFUI\Code Warrior UI.csproj", "{181C8553-91A4-427C-B089-5B71DB062DB9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeWarriorUI", "WPFUI\CodeWarriorUI.csproj", "{181C8553-91A4-427C-B089-5B71DB062DB9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Engine\Engine.csproj", "{E98C4A80-366B-4490-87E1-1EDDB7D2F131}"
 EndProject
