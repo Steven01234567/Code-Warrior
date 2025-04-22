@@ -47,12 +47,12 @@ namespace Engine.Factories
                     return binaryTree;
 
                 case 301:
-                    Monster python = new Monster("BOSS: The Python", "Python.png", 400, 400, 20, 20, 400, 400, 2);
+                    Monster python = new Monster("BOSS: The Python", "Python.png", 1991, 1991, 20, 20, 400, 400, 2);
 
                     return python;
 
                 case 302:
-                    Monster pythonDark = new Monster("BOSS: The Python in Darkness", "PythonDark.png", 400, 400, 99, 99, 400, 400, 2);
+                    Monster pythonDark = new Monster("BOSS: The Python in Darkness", "PythonDark.png", 1991, 1991, 100, 100, 400, 400, 2);
 
                     return pythonDark;
 
