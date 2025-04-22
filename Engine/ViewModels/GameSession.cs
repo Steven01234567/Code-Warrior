@@ -140,7 +140,7 @@ namespace Engine.ViewModels
         {
             if (CurrentPlayer.HasSkillPoints)
             {
-                if (!CurrentPlayer.IsHPMaxed)
+                if (!CurrentPlayer.IsPrecisionMaxed)
                 {
                     CurrentPlayer.Precision += 1;
                     CurrentPlayer.SkillPoints--;
