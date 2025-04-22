@@ -16,21 +16,21 @@ namespace Engine.Factories
             switch(monsterID)
             {
                 case 101:
-                    Monster mip = new Monster("Mip", "Mip.png", 10, 10, 1, 2, 1, 5, 10);
+                    Monster mip = new Monster("Mip", "Mip.png", 10, 10, 0, 3, 2, 5, 1);
 
                     AddLootItem(mip, 9001, 100, 1);
 
                     return mip;
 
                 case 102:
-                    Monster mips = new Monster("Horde of Mips", "Mips.png", 100, 100, 1, 2, 10, 10, 5);
+                    Monster mips = new Monster("Horde of Mips", "Mips.png", 100, 100, 0, 3, 30, 25, 5);
 
                     AddLootItem(mips, 9001, 100, 5);
 
                     return mips;
 
                 case 201:
-                    Monster nodes = new Monster("Nodes", "Nodes.png", 32, 32, 4, 4, 4, 16, 8);
+                    Monster nodes = new Monster("Nodes", "Nodes.png", 64, 64, 4, 4, 16, 16, 4);
 
                     AddLootItem(nodes, 9002, 75, 1);
                     AddLootItem(nodes, 9003, 25, 1);
@@ -38,7 +38,7 @@ namespace Engine.Factories
                     return nodes;
 
                 case 202:
-                    Monster binaryTree = new Monster("Binary Tree", "BinaryTree.png", 128, 128, 32, 32, 1, 64, 64);
+                    Monster binaryTree = new Monster("Binary Tree", "BinaryTree.png", 256, 256, 16, 16, 64, 64, 1);
 
                     AddLootItem(binaryTree, 9002, 100, 63);
                     AddLootItem(binaryTree, 9003, 50, 32);
@@ -47,12 +47,12 @@ namespace Engine.Factories
                     return binaryTree;
 
                 case 301:
-                    Monster python = new Monster("Python", "Python.png", 200, 200, 20, 20, 2, 200, 200);
+                    Monster python = new Monster("BOSS: The Python", "Python.png", 1000, 1000, 20, 20, 200, 200, 2);
 
                     return python;
 
                 case 302:
-                    Monster pythonDark = new Monster("Python in Darkness", "PythonDark.png", 200, 200, 99, 99, 2, 200, 200);
+                    Monster pythonDark = new Monster("BOSS: The Python in Darkness", "PythonDark.png", 1000, 1000, 99, 99, 200, 200, 2);
 
                     return pythonDark;
 

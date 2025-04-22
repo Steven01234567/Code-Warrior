@@ -36,8 +36,9 @@ namespace Engine.Models
 
         public Monster(string name, string imageName,
             int maxHitPoints, int hitPoints,
-            int minimumDamage, int maximumDamage, int amount,
-            int rewardExperiencePoints, int rewardGold,
+            int minimumDamage, int maximumDamage,
+            int rewardExperiencePoints, int rewardGold, 
+            int amount,
             bool isBleeding = false)
         {
             Name = name;

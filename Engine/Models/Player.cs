@@ -28,7 +28,7 @@ namespace Engine.Models
         private int _accuracy = 0;
         private readonly int _precisionCap = 25;
         private int _precision = 0;
-        private int _skillPoints = 200;
+        private int _skillPoints = 0;
 
         // Name
         public string Name

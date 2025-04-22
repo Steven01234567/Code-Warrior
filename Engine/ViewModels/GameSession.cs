@@ -255,14 +255,14 @@ namespace Engine.ViewModels
                 return;
             }
 
-            int damageToMonster = RandomNumberGenerator.NumberBetween(CurrentWeapon.MinimumDamage + CurrentPlayer.Accuracy, CurrentWeapon.MaximumDamage);
-
-            if (damageToMonster <= 0)
+            if (CurrentPlayer.Accuracy + CurrentWeapon.HitRate < RandomNumberGenerator.NumberBetween(1, 100))
             {
                 RaiseMessage($"You missed the {CurrentMonster.Name}");
             }
             else
             {
+                int damageToMonster = RandomNumberGenerator.NumberBetween(CurrentWeapon.MinimumDamage, CurrentWeapon.MaximumDamage);
+                
                 damageToMonster += CurrentPlayer.Strength;
 
                 if (CurrentWeapon.Effect == "Cleave")
@@ -287,7 +287,7 @@ namespace Engine.ViewModels
                     RaiseMessage("Your attack exposed the enemy!");
                 }
 
-                if (CurrentPlayer.Precision >= RandomNumberGenerator.NumberBetween(1, 100))
+                if (CurrentPlayer.Precision + CurrentWeapon.CritRate >= RandomNumberGenerator.NumberBetween(1, 100))
                 {
                     damageToMonster *= 2;
                     RaiseMessage("You landed a critical hit!");
@@ -345,6 +345,10 @@ namespace Engine.ViewModels
 
                     CurrentLocation = CurrentWorld.LocationAt(0, 0);
                     CurrentPlayer.HitPoints = CurrentPlayer.MaximumHitPoints;
+
+                    int goldLost = Math.Max(1, CurrentPlayer.Gold * 9 / 10);
+                    CurrentPlayer.Gold -= goldLost;
+                    RaiseMessage($"You lost {goldLost} gold.");
                 }
             }
         }
