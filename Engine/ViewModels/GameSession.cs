@@ -255,14 +255,16 @@ namespace Engine.ViewModels
                 return;
             }
 
-            int damageToMonster = RandomNumberGenerator.NumberBetween(CurrentWeapon.MinimumDamage, CurrentWeapon.MaximumDamage);
+            int damageToMonster = RandomNumberGenerator.NumberBetween(CurrentWeapon.MinimumDamage + CurrentPlayer.Accuracy, CurrentWeapon.MaximumDamage);
 
-            if (damageToMonster == 0)
+            if (damageToMonster <= 0)
             {
                 RaiseMessage($"You missed the {CurrentMonster.Name}");
             }
             else
             {
+                damageToMonster += CurrentPlayer.Strength;
+
                 if (CurrentWeapon.Effect == "Cleave")
                 {
                     damageToMonster *= CurrentMonster.Amount;
@@ -274,7 +276,8 @@ namespace Engine.ViewModels
 
                 if (CurrentMonster.IsBleeding)
                 {
-                    damageToMonster *= 2;
+                    damageToMonster *= 3;
+                    damageToMonster /= 2;
                     CurrentMonster.IsBleeding = false;
                     RaiseMessage("You attacked when your enemy was vulnerable!");
                 }
@@ -282,6 +285,12 @@ namespace Engine.ViewModels
                 {
                     CurrentMonster.IsBleeding = true;
                     RaiseMessage("Your attack exposed the enemy!");
+                }
+
+                if (CurrentPlayer.Precision >= RandomNumberGenerator.NumberBetween(1, 100))
+                {
+                    damageToMonster *= 2;
+                    RaiseMessage("You landed a critical hit!");
                 }
 
                 CurrentMonster.HitPoints -= damageToMonster;
@@ -294,6 +303,14 @@ namespace Engine.ViewModels
 
                 CurrentPlayer.ExperiencePoints += CurrentMonster.RewardExperiencePoints;
                 RaiseMessage($"You gained {CurrentMonster.RewardExperiencePoints} experience points.");
+                while (CurrentPlayer.ExperiencePoints >= CurrentPlayer.LevelUpExperiencePoints &&
+                    !CurrentPlayer.IsLevelMaxed)
+                {
+                    CurrentPlayer.Level++;
+                    CurrentPlayer.LevelUpExperiencePoints += CurrentPlayer.Level * CurrentPlayer.LevelUpExperiencePointsBase;
+                    CurrentPlayer.SkillPoints += 1;
+                    RaiseMessage($"You leveled up! +1 Skill point");
+                }
 
                 CurrentPlayer.Gold += CurrentMonster.RewardGold;
                 RaiseMessage($"You earned {CurrentMonster.RewardGold} gold.");

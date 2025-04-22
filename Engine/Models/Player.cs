@@ -15,7 +15,8 @@ namespace Engine.Models
         private int _levelCap = 100;
         private int _level = 1;
         private int _experiencePoints = 0;
-        private int _levelUpExperiencePoints = 50;
+        private readonly int _levelUpExperiencePointsBase = 50;
+        private int _levelUpExperiencePoints;
         private int _gold = 15;
 
         private readonly int _hitPointsCap = 500;
@@ -54,6 +55,7 @@ namespace Engine.Models
             }
         }
         public bool IsLevelMaxed => Level >= LevelCap;
+        public int LevelUpExperiencePointsBase => _levelUpExperiencePointsBase;
         public int ExperiencePoints 
         {
             get { return _experiencePoints; } 
@@ -190,6 +192,8 @@ namespace Engine.Models
 
         public Player()
         {
+            LevelUpExperiencePoints = _levelUpExperiencePointsBase;
+
             HitPoints = MaximumHitPoints;
 
             Inventory = new ObservableCollection<GameItem>();
