@@ -263,7 +263,7 @@
                         Content="Attack"
                         Click="OnClick_AttackMonster"/>
 
-                <Label Grid.Row="2" Grid.Column="0" Content="Selected Potion"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="Selected Potion:"/>
                 <ComboBox Grid.Row="2" Grid.Column="1"
                           ItemsSource="{Binding CurrentPlayer.Potions}"
                           SelectedItem="{Binding CurrentPotion}"
