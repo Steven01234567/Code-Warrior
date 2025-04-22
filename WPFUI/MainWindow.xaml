@@ -36,28 +36,64 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="20"/>
+
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+            
 
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Content="Name:"/>
-            <Label Grid.Row="0" Grid.Column="1" Content="{Binding CurrentPlayer.Name}"/>
-            <Label Grid.Row="1" Grid.Column="0" Content="Class:"/>
-            <Label Grid.Row="1" Grid.Column="1" Content="{Binding CurrentPlayer.CharacterClass}"/>
-            <Label Grid.Row="2" Grid.Column="0" Content="Hit points:"/>
-            <Label Grid.Row="2" Grid.Column="1" Content="{Binding CurrentPlayer.HitPoints}"/>
+            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Content="{Binding CurrentPlayer.Name}"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Level:"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="{Binding CurrentPlayer.Level}"/>
+            <Label Grid.Row="1" Grid.Column="2" Content="MAX" Visibility="{Binding CurrentPlayer.IsLevelMaxed, Converter={StaticResource BooleanToVisibility}}"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="XP:"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="{Binding CurrentPlayer.ExperiencePointsDisplay}"/>
             <Label Grid.Row="3" Grid.Column="0" Content="Gold:"/>
             <Label Grid.Row="3" Grid.Column="1" Content="{Binding CurrentPlayer.Gold}"/>
-            <Label Grid.Row="4" Grid.Column="0" Content="XP:"/>
-            <Label Grid.Row="4" Grid.Column="1" Content="{Binding CurrentPlayer.ExperiencePoints}"/>
-            <Label Grid.Row="5" Grid.Column="0" Content="Level:"/>
-            <Label Grid.Row="5" Grid.Column="1" Content="{Binding CurrentPlayer.Level}"/>
+            <Label Grid.Row="5" Grid.Column="0" Content="STATS"/>
+            <Label Grid.Row="6" Grid.Column="0" Content="HP:"/>
+            <Label Grid.Row="6" Grid.Column="1" Content="{Binding CurrentPlayer.HitPointsDisplay}"/>
+            <Label Grid.Row="6" Grid.Column="2" Content="MAX" Visibility="{Binding CurrentPlayer.IsHPMaxed, Converter={StaticResource BooleanToVisibility}}"/>
+            <Label Grid.Row="7" Grid.Column="0" Content="Strength:"/>
+            <Label Grid.Row="7" Grid.Column="1" Content="{Binding CurrentPlayer.Strength}"/>
+            <Label Grid.Row="7" Grid.Column="2" Content="MAX" Visibility="{Binding CurrentPlayer.IsStrengthMaxed, Converter={StaticResource BooleanToVisibility}}"/>
+            <Label Grid.Row="8" Grid.Column="0" Content="Accuracy:"/>
+            <Label Grid.Row="8" Grid.Column="1" Content="{Binding CurrentPlayer.Accuracy}"/>
+            <Label Grid.Row="8" Grid.Column="2" Content="MAX" Visibility="{Binding CurrentPlayer.IsAccuracyMaxed, Converter={StaticResource BooleanToVisibility}}"/>
+            <Label Grid.Row="9" Grid.Column="0" Content="Precision:"/>
+            <Label Grid.Row="9" Grid.Column="1" Content="{Binding CurrentPlayer.Precision}"/>
+            <Label Grid.Row="9" Grid.Column="2" Content="MAX" Visibility="{Binding CurrentPlayer.IsPrecisionMaxed, Converter={StaticResource BooleanToVisibility}}"/>
+            <Label Grid.Row="10" Grid.Column="0" Content="Skill points:"/>
+            <Label Grid.Row="10" Grid.Column="1" Content="{Binding CurrentPlayer.SkillPoints}"/>
+
+            <Button Grid.Row="6" Grid.Column="2"
+                    Content="+HP"
+                    Visibility="{Binding CurrentPlayer.HasSkillPointsForHP, Converter={StaticResource BooleanToVisibility}}"
+                    Click="OnClick_GiveHP"/>
+            <Button Grid.Row="7" Grid.Column="2"
+                    Content="+Strength"
+                    Visibility="{Binding CurrentPlayer.HasSkillPointsForStrength, Converter={StaticResource BooleanToVisibility}}"
+                    Click="OnClick_GiveStrength"/>
+            <Button Grid.Row="8" Grid.Column="2"
+                    Content="+Accuracy"
+                    Visibility="{Binding CurrentPlayer.HasSkillPointsForAccuracy, Converter={StaticResource BooleanToVisibility}}"
+                    Click="OnClick_GiveAccuracy"/>
+            <Button Grid.Row="9" Grid.Column="2"
+                    Content="+Precision"
+                    Visibility="{Binding CurrentPlayer.HasSkillPointsForPrecision, Converter={StaticResource BooleanToVisibility}}"
+                    Click="OnClick_GivePrecision"/>
         </Grid>
 
         <!-- Gameplay -->
@@ -222,8 +258,8 @@
                           SelectedValuePath="ID"/>
 
                 <Button Grid.Row="0" Grid.Column="2"
-            Content="Attack"
-            Click="OnClick_AttackMonster"/>
+                        Content="Attack"
+                        Click="OnClick_AttackMonster"/>
             </Grid>
 
             <Grid Grid.Row="0" Grid.Column="1">

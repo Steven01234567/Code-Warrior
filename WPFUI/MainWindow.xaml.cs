@@ -29,6 +29,25 @@ namespace WPFUI
             DataContext = _gameSession;
         }
 
+        // Stat Buff Commands
+        private void OnClick_GiveHP(object sender, RoutedEventArgs e)
+        {
+            _gameSession.GiveHP();
+        }
+        private void OnClick_GiveStrength(object sender, RoutedEventArgs e)
+        {
+            _gameSession.GiveStrength();
+        }
+        private void OnClick_GiveAccuracy(object sender, RoutedEventArgs e)
+        {
+            _gameSession.GiveAccuracy();
+        }
+        private void OnClick_GivePrecision(object sender, RoutedEventArgs e)
+        {
+            _gameSession.GivePrecision();
+        }
+
+        // Movement Click Commands
         private void OnClick_MoveNorth(object sender, RoutedEventArgs e)
         {
             _gameSession.MoveNorth();

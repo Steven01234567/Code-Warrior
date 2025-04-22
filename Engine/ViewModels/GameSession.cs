@@ -81,13 +81,9 @@ namespace Engine.ViewModels
         #endregion
         public GameSession()
         {
-            CurrentPlayer = new Player(200)
-            { 
-                Name = "Oscar Owen Peterson", 
-                CharacterClass = "Code Warrior",  
-                ExperiencePoints = 0, 
-                Gold = 20, 
-                Level = 1 
+            CurrentPlayer = new Player()
+            {
+                Name = "Oscar Owen Peterson"
             };
 
             if (!CurrentPlayer.Weapons.Any())
@@ -100,6 +96,54 @@ namespace Engine.ViewModels
             CurrentLocation = CurrentWorld.LocationAt(0, 0);
         }
 
+        // Stat Increases
+        public void GiveHP()
+        {
+            if (CurrentPlayer.HasSkillPoints)
+            {
+                if (!CurrentPlayer.IsHPMaxed)
+                {
+                    CurrentPlayer.MaximumHitPoints += 20;
+                    CurrentPlayer.HitPoints += 20;
+                    CurrentPlayer.SkillPoints--;
+                }
+            }
+        }
+        public void GiveStrength()
+        {
+            if (CurrentPlayer.HasSkillPoints)
+            {
+                if (!CurrentPlayer.IsStrengthMaxed)
+                {
+                    CurrentPlayer.Strength += 1;
+                    CurrentPlayer.SkillPoints--;
+                }
+            }
+        }
+        public void GiveAccuracy()
+        {
+            if (CurrentPlayer.HasSkillPoints)
+            {
+                if (!CurrentPlayer.IsAccuracyMaxed)
+                {
+                    CurrentPlayer.Accuracy += 1;
+                    CurrentPlayer.SkillPoints--;
+                }
+            }
+        }
+        public void GivePrecision()
+        {
+            if (CurrentPlayer.HasSkillPoints)
+            {
+                if (!CurrentPlayer.IsHPMaxed)
+                {
+                    CurrentPlayer.Precision += 1;
+                    CurrentPlayer.SkillPoints--;
+                }
+            }
+        }
+
+        // Movement Fuctions
         public void MoveNorth()
         {
             if (!HasLocationToNorth) return;
