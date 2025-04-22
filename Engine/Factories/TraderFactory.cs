@@ -20,15 +20,15 @@ namespace Engine.Factories
 
             Trader risky = new Trader("Risky");
             risky.AddItemToInventory(ItemFactory.CreateGameItem(2001, 1000));
-            risky.AddItemToInventory(ItemFactory.CreateGameItem(2002, 1));
+            risky.AddItemToInventory(ItemFactory.CreateGameItem(7001, 1));
 
             Trader segmentius = new Trader("Segmentius");
             segmentius.AddItemToInventory(ItemFactory.CreateGameItem(9001, 100));
             segmentius.AddItemToInventory(ItemFactory.CreateGameItem(9002, 100));
             segmentius.AddItemToInventory(ItemFactory.CreateGameItem(9003, 100));
             segmentius.AddItemToInventory(ItemFactory.CreateGameItem(9004, 100));
-            segmentius.AddItemToInventory(ItemFactory.CreateGameItem(8001, 1));
-            segmentius.AddItemToInventory(ItemFactory.CreateGameItem(8002, 1));
+            segmentius.AddItemToInventory(ItemFactory.CreateGameItem(8001, 100));
+            segmentius.AddItemToInventory(ItemFactory.CreateGameItem(8002, 100));
 
             AddTraderToList(cecil);
             AddTraderToList(risky);

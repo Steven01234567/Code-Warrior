@@ -17,7 +17,7 @@ namespace Engine.Models
         private int _experiencePoints = 0;
         private readonly int _levelUpExperiencePointsBase = 50;
         private int _levelUpExperiencePoints;
-        private int _gold = 15;
+        private int _gold = 1500;
 
         private readonly int _hitPointsCap = 500;
         private int _maximumHitPoints = 20;
@@ -29,6 +29,8 @@ namespace Engine.Models
         private readonly int _precisionCap = 25;
         private int _precision = 0;
         private int _skillPoints = 0;
+
+        private bool _hasPytorch = false;
 
         // Name
         public string Name
@@ -181,14 +183,15 @@ namespace Engine.Models
 
         public ObservableCollection<GameItem> Inventory { get; set; }
         public List<GameItem> Weapons => Inventory.Where(i => i is Weapon).ToList();
-        //public List<GameItem> Potions => Inventory.Where(i => i is Potion).ToList();
+        public List<GameItem> Potions => Inventory.Where(i => i is Potion).ToList();
         public ObservableCollection<QuestStatus> Quests { get; set; }
         public bool HasSkillPoints => SkillPoints > 0;
         public bool HasSkillPointsForHP => HasSkillPoints && !IsHPMaxed;
         public bool HasSkillPointsForStrength => HasSkillPoints && !IsStrengthMaxed;
         public bool HasSkillPointsForAccuracy => HasSkillPoints && !IsAccuracyMaxed;
         public bool HasSkillPointsForPrecision => HasSkillPoints && !IsPrecisionMaxed;
-        public bool HasPytorch { get; private set; }
+        public bool HasPytorch => Inventory.Any(i => i.ItemTypeID == 7001);
+
 
         public Player()
         {
@@ -208,17 +211,14 @@ namespace Engine.Models
                 {
                     inventoryItem.Quantity += item.Quantity;
                     OnPropertyChanged(nameof(Weapons));
-                    OnPropertyChanged(nameof(HasPytorch));
+                    OnPropertyChanged(nameof(Potions));
                     return;
                 }
             }
 
             Inventory.Add(item);
             OnPropertyChanged(nameof(Weapons));
-            if (item.ItemTypeID == 2002)
-            {
-                HasPytorch = true;
-            }
+            OnPropertyChanged(nameof(Potions));
         }
         public void RemoveItemFromInventory(GameItem item)
         {
@@ -229,17 +229,13 @@ namespace Engine.Models
                     if (item.Quantity >= inventoryItem.Quantity)
                     {
                         Inventory.Remove(inventoryItem);
-                        if (item.ItemTypeID == 2002)
-                        {
-                            HasPytorch = false;
-                        }
                     }
                     else if (item.Quantity < inventoryItem.Quantity)
                     {
                         inventoryItem.Quantity -= item.Quantity;
                     }
                     OnPropertyChanged(nameof(Weapons));
-                    OnPropertyChanged(nameof(HasPytorch));
+                    OnPropertyChanged(nameof(Potions));
                     break;
                 }
             }

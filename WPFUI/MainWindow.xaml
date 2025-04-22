@@ -237,29 +237,41 @@
 
             <!-- Combat Controls -->
             <Grid Grid.Row="9" Grid.Column="0"
-                  Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
 
-                <ComboBox Grid.Row="0" Grid.Column="0"
+                <Label Grid.Row="0" Grid.Column="0" Content="Active Weapon:"/>
+                <ComboBox Grid.Row="0" Grid.Column="1"
                           ItemsSource="{Binding CurrentPlayer.Weapons}"
                           SelectedItem="{Binding CurrentWeapon}"
                           DisplayMemberPath="Name"
                           SelectedValuePath="ID"/>
-
-                <Button Grid.Row="0" Grid.Column="2"
+                <Button Grid.Row="0" Grid.Column="3"
+                        Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
                         Content="Attack"
                         Click="OnClick_AttackMonster"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Selected Potion"/>
+                <ComboBox Grid.Row="2" Grid.Column="1"
+                          ItemsSource="{Binding CurrentPlayer.Potions}"
+                          SelectedItem="{Binding CurrentPotion}"
+                          DisplayMemberPath="Name"
+                          SelectedValuePath="ID"/>
+                <Button Grid.Row="2" Grid.Column="3"
+                        Content="Use"
+                        Click="OnClick_UsePotion"/>
             </Grid>
 
             <Grid Grid.Row="0" Grid.Column="1">

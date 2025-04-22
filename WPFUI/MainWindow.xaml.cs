@@ -72,6 +72,10 @@ namespace WPFUI
         {
             _gameSession.AttackCurrentMonster();
         }
+        private void OnClick_UsePotion(object sender, RoutedEventArgs e)
+        {
+            _gameSession.UsePotion();
+        }
 
         private void OnGameMessageRaised(object sender, GameMessageEventArgs e)
         {

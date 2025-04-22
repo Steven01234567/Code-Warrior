@@ -68,6 +68,7 @@ namespace Engine.ViewModels
             }
         }
         public Weapon CurrentWeapon { get; set; }
+        public Potion CurrentPotion { get; set; }
         public bool HasLocationToNorth =>
             CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1) != null;
         public bool HasLocationToWest =>
@@ -108,6 +109,10 @@ namespace Engine.ViewModels
                     CurrentPlayer.SkillPoints--;
                 }
             }
+        }
+        public void RestoreHP(int amount)
+        {
+            CurrentPlayer.HitPoints = Math.Min(CurrentPlayer.HitPoints + amount, CurrentPlayer.MaximumHitPoints);
         }
         public void GiveStrength()
         {
@@ -239,7 +244,7 @@ namespace Engine.ViewModels
             CurrentMonster = CurrentLocation.GetMonster();
             if (CurrentMonster != null)
             {
-                if (CurrentMonster.Name == "Python" && !CurrentPlayer.HasPytorch)
+                if (CurrentMonster.Name == "BOSS: The Python" && !CurrentPlayer.HasPytorch)
                 {
                     CurrentMonster = MonsterFactory.GetMonster(302);
                 }
@@ -350,6 +355,29 @@ namespace Engine.ViewModels
                     CurrentPlayer.Gold -= goldLost;
                     RaiseMessage($"You lost {goldLost} gold.");
                 }
+            }
+        }
+
+        public void UsePotion()
+        {
+            if (CurrentPotion == null)
+            {
+                RaiseMessage("You must select a potion to use.");
+                return;
+            }
+
+            if (CurrentPotion.Quantity <= 0)
+            {
+                RaiseMessage("You don't have any more of that potion.");
+                return;
+            }
+
+            if (CurrentPotion.ItemTypeID == 2001)
+            {
+                GameItem tempItem = CurrentPotion.Clone();
+                tempItem.Quantity = 1;
+                RestoreHP(50);
+                CurrentPlayer.RemoveItemFromInventory(tempItem);
             }
         }
 

@@ -40,6 +40,10 @@ namespace WPFUI
                 {
                     tempItem = (item as Weapon).Clone();
                 }
+                if (item is Potion)
+                {
+                    tempItem = (item as Potion).Clone();
+                }
                 else
                 {
                     tempItem = item.Clone();
@@ -62,6 +66,10 @@ namespace WPFUI
                 {
                     tempItem = (item as Weapon).Clone();
                 }
+                else if (item is Potion)
+                {
+                    tempItem = (item as Potion).Clone();
+                }
                 else
                 {
                     tempItem = item.Clone();
@@ -72,12 +80,6 @@ namespace WPFUI
                     Session.CurrentPlayer.Gold -= item.Price;
                     Session.CurrentTrader.RemoveItemFromInventory(tempItem);
                     Session.CurrentPlayer.AddItemToInventory(tempItem);
-
-                    if (item.ItemTypeID == 2001)
-                    {
-                        Session.CurrentPlayer.HitPoints = Session.CurrentPlayer.MaximumHitPoints;
-                        MessageBox.Show("You restored to full health!");
-                    }
                 }
                 else
                 {
