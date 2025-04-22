@@ -17,6 +17,7 @@ namespace Engine.ViewModels
         #region Properties
 
         private Location _currentLocation;
+        private Weapon _currentWeapon;
         private Monster _currentMonster;
         private Trader _currentTrader;
         public World CurrentWorld { get; set; }
@@ -67,7 +68,16 @@ namespace Engine.ViewModels
                 OnPropertyChanged(nameof(HasTrader));
             }
         }
-        public Weapon CurrentWeapon { get; set; }
+        public Weapon CurrentWeapon 
+        {
+            get { return _currentWeapon; }
+            set
+            {
+                _currentWeapon = value;
+                OnPropertyChanged(nameof(CurrentWeapon));
+                OnPropertyChanged(nameof(HasWeapon));
+            }
+        }
         public Potion CurrentPotion { get; set; }
         public bool HasLocationToNorth =>
             CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1) != null;
@@ -77,6 +87,7 @@ namespace Engine.ViewModels
             CurrentWorld.LocationAt(CurrentLocation.XCoordinate + 1, CurrentLocation.YCoordinate) != null;
         public bool HasLocationToSouth =>
             CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate - 1) != null;
+        public bool HasWeapon => CurrentWeapon != null;
         public bool HasMonster => CurrentMonster != null;
         public bool HasTrader => CurrentTrader != null;
         #endregion

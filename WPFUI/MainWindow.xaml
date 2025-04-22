@@ -241,6 +241,10 @@
                   VerticalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
@@ -262,14 +266,26 @@
                         Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
                         Content="Attack"
                         Click="OnClick_AttackMonster"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="Weapon Damage:"
+                       Visibility="{Binding HasWeapon, Converter={StaticResource BooleanToVisibility}}"/>
+                <Label Grid.Row="1" Grid.Column="1" Content="{Binding CurrentWeapon.DamageDisplay}"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="Weapon Accuracy:"
+                       Visibility="{Binding HasWeapon, Converter={StaticResource BooleanToVisibility}}"/>
+                <Label Grid.Row="2" Grid.Column="1" Content="{Binding CurrentWeapon.HitRateDisplay}"/>
+                <Label Grid.Row="3" Grid.Column="0" Content="Weapon Crit Rate:"
+                       Visibility="{Binding HasWeapon, Converter={StaticResource BooleanToVisibility}}"/>
+                <Label Grid.Row="3" Grid.Column="1" Content="{Binding CurrentWeapon.CritRateDisplay}"/>
+                <Label Grid.Row="4" Grid.Column="0" Content="{Binding CurrentWeapon.EffectNameDisplay}"
+                       Visibility="{Binding HasWeapon, Converter={StaticResource BooleanToVisibility}}"/>
+                <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding CurrentWeapon.EffectDescriptionDisplay}" TextWrapping="Wrap"/>
 
-                <Label Grid.Row="2" Grid.Column="0" Content="Selected Potion:"/>
-                <ComboBox Grid.Row="2" Grid.Column="1"
+                <Label Grid.Row="6" Grid.Column="0" Content="Selected Potion:"/>
+                <ComboBox Grid.Row="6" Grid.Column="1"
                           ItemsSource="{Binding CurrentPlayer.Potions}"
                           SelectedItem="{Binding CurrentPotion}"
                           DisplayMemberPath="Name"
                           SelectedValuePath="ID"/>
-                <Button Grid.Row="2" Grid.Column="3"
+                <Button Grid.Row="6" Grid.Column="3"
                         Content="Use"
                         Click="OnClick_UsePotion"/>
             </Grid>

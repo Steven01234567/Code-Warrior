@@ -17,7 +17,7 @@ namespace Engine.Models
         private int _experiencePoints = 0;
         private readonly int _levelUpExperiencePointsBase = 50;
         private int _levelUpExperiencePoints;
-        private int _gold = 20;
+        private int _gold = 11120;
 
         private readonly int _hitPointsCap = 500;
         private int _maximumHitPoints = 20;

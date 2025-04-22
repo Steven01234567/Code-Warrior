@@ -40,7 +40,7 @@ namespace WPFUI
                 {
                     tempItem = (item as Weapon).Clone();
                 }
-                if (item is Potion)
+                else if (item is Potion)
                 {
                     tempItem = (item as Potion).Clone();
                 }

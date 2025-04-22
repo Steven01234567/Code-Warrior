@@ -13,7 +13,7 @@ namespace Engine.Factories
 
         static TraderFactory()
         {
-            Trader cecil = new Trader("Cecil");
+            Blacksmith cecil = new Blacksmith("Cecil");
             cecil.AddItemToInventory(ItemFactory.CreateGameItem(1002, 1));
             cecil.AddItemToInventory(ItemFactory.CreateGameItem(1003, 1));
             cecil.AddItemToInventory(ItemFactory.CreateGameItem(1011, 1));
