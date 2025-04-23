@@ -11,3 +11,7 @@
 * Six different monsters to battle
 * Friendly NPCs to interact with
 * Customizable stats to personalize your character
+
+<p>
+  Download CodeWarriorUI.exe to start playing.
+</p>
