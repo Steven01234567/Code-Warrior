@@ -365,6 +365,7 @@ namespace Engine.ViewModels
 
                 if (CurrentPlayer.HitPoints <= 0)
                 {
+                    CurrentPlayer.Deaths++;
                     RaiseMessage($"\nThe {CurrentMonster.Name} killed you.");
 
                     CurrentLocation = CurrentWorld.LocationAt(0, 0);

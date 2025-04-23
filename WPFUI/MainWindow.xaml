@@ -44,6 +44,9 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="50"/>
+
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             
 
@@ -94,6 +97,9 @@
                     Content="+Precision"
                     Visibility="{Binding CurrentPlayer.HasSkillPointsForPrecision, Converter={StaticResource BooleanToVisibility}}"
                     Click="OnClick_GivePrecision"/>
+
+            <Label Grid.Row="12" Grid.Column="0" Content="Deaths:"/>
+            <Label Grid.Row="12" Grid.Column="1" Content="{Binding CurrentPlayer.Deaths}"/>
         </Grid>
 
         <!-- Gameplay -->

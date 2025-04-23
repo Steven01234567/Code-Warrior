@@ -12,6 +12,8 @@ namespace Engine.Models
     public class Player : BaseNotificationClass
     {
         private string _name;
+        private int _deaths = 0;
+
         private int _levelCap = 100;
         private int _level = 1;
         private int _experiencePoints = 0;
@@ -40,6 +42,15 @@ namespace Engine.Models
             {
                 _name = value;
                 OnPropertyChanged(nameof(Name));
+            }
+        }
+        public int Deaths 
+        {
+            get { return _deaths; }
+            set
+            {
+                _deaths = value;
+                OnPropertyChanged(nameof(Deaths));
             }
         }
 
