@@ -8,7 +8,7 @@ namespace Engine.Models
 {
     public class Weapon : GameItem
     {
-        private readonly string _cleaveDescriptionDisplay = "Damages all enemies";
+        private readonly string _cleaveDescriptionDisplay = "Deals extra damage to groups of enemies";
         private readonly string _pierceDescriptionDisplay = "Next attack does x1.5 damage";
 
         public int MinimumDamage { get; set; }
