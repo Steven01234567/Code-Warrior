@@ -279,6 +279,9 @@ namespace Engine.ViewModels
             if (CurrentPlayer.Accuracy + CurrentWeapon.HitRate < RandomNumberGenerator.NumberBetween(1, 100))
             {
                 RaiseMessage($"You missed the {CurrentMonster.Name}");
+
+                CurrentMonster.IsBleeding = false;
+                RaiseMessage($"The {CurrentMonster.Name} stopped bleeding");
             }
             else
             {
@@ -302,7 +305,7 @@ namespace Engine.ViewModels
                     CurrentMonster.IsBleeding = false;
                     RaiseMessage("You attacked when your enemy was vulnerable!");
                 }
-                if (CurrentWeapon.Effect == "Pierce")
+                else if (CurrentWeapon.Effect == "Pierce")
                 {
                     CurrentMonster.IsBleeding = true;
                     RaiseMessage("Your attack exposed the enemy!");
